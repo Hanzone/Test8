@@ -41,7 +41,7 @@ public class Test {
         Map<String,List<String>> map = new HashMap<>();
         map.put("1", stringss);
         map.put("2", strings);
-        map.values().stream().findAny().ifPresent(l -> l.stream().findAny().ifPresent(ll -> print(ll)));
+        map.values().stream().findAny().ifPresent(l -> l.stream().findAny().ifPresent(Test::print));
 
     }
 
