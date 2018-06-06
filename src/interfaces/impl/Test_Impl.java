@@ -8,13 +8,33 @@ import interfaces.Test_IF2;
  */
 public class Test_Impl implements Test_IF, Test_IF2 {
 
-    public int i1;
+    private int i1;
+
+    private Integer i2;
+    public Test_Impl(){
+    }
     public Test_Impl(int i){
         this.i1 = i;
     }
     @Override
     public void say() {
-        System.out.println("say Test_Impl");
+        Test_IF.super.say();
+    }
+
+    public int getI1() {
+        return i1;
+    }
+
+    public void setI1(int i1) {
+        this.i1 = i1;
+    }
+
+    public Integer getI2() {
+        return i2;
+    }
+
+    public void setI2(Integer i2) {
+        this.i2 = i2;
     }
 
     public static class C {
@@ -37,7 +57,6 @@ public class Test_Impl implements Test_IF, Test_IF2 {
         return 0;
     }
 
-    @Override
     public boolean equals(Object obj) {
         return toString().equals(obj.toString());
     }
