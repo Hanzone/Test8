@@ -10,10 +10,63 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <jedis_version>2.9.0</jedis_version>
+        <jedis.version>2.9.0</jedis.version>
+        <commons.lang3.version>3.3.2</commons.lang3.version>
+        <commons.collections4.version>4.0</commons.collections4.version>
+        <guava.version>18.0</guava.version>
+        <commons.io.version>2.5</commons.io.version>
+        <slf4j.log4j12.version>1.7.7</slf4j.log4j12.version>
         <!--<maven.compiler.source>1.8</maven.compiler.source>-->
         <!--<maven.compiler.target>1.8</maven.compiler.target>-->
+
+
+        <ad-commons-version>1.0.1</ad-commons-version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${commons.collections4.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.log4j12.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+
+
+
+
+        <dependency>
+            <groupId>com.ximalaya.ad</groupId>
+            <artifactId>ad-common-util</artifactId>
+            <version>${ad-commons-version}</version>
+        </dependency>
+    </dependencies>
+
 
     <build>
         <plugins>
@@ -30,14 +83,4 @@
         </plugins>
 
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>${jedis_version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 </project>

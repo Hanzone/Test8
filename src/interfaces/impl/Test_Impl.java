@@ -21,6 +21,10 @@ public class Test_Impl implements Test_IF, Test_IF2 {
         Test_IF.super.say();
     }
 
+    public void laugh() {
+        System.out.println("哈哈哈！！！");
+    }
+
     public int getI1() {
         return i1;
     }

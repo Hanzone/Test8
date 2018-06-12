@@ -1,8 +1,21 @@
+import com.google.common.collect.Lists;
+import com.ximalaya.ad.common.util.LogMessageBuilder;
 import funInterfaces.BufferedReaderProcessor;
 import interfaces.Test_IF;
+import interfaces.impl.Test_Impl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 
 import static java.lang.System.out;
 
@@ -11,15 +24,37 @@ import static java.lang.System.out;
  */
 public class Test<T> {
 
+    private static final Logger logger = LoggerFactory.getLogger(Test.class);
+
     int we = 122;
     static String s = "123";
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 
-        Jedis jedis = new Jedis("10.211.55.5", 6379);
-        // jedis.set("foo", "bar");
-        String value = jedis.get("foo");
-        print(value);
+
+    }
+
+    public enum SortDirection {
+        ASC("asc"),
+        DESC("desc");
+        private String direction;
+
+        private SortDirection(String direction) {
+            this.direction = direction;
+        }
+
+        public static SortDirection fromCode(String value) {
+            for (SortDirection sortDirection : values()) {
+                if (sortDirection.getDirection().equals(value)) {
+                    return sortDirection;
+                }
+            }
+            return null;
+        }
+
+        public String getDirection() {
+            return this.direction;
+        }
     }
 
 
