@@ -16,9 +16,10 @@
         <guava.version>18.0</guava.version>
         <commons.io.version>2.5</commons.io.version>
         <slf4j.log4j12.version>1.7.7</slf4j.log4j12.version>
+        <fastjson.version>1.2.6</fastjson.version>
+
         <!--<maven.compiler.source>1.8</maven.compiler.source>-->
         <!--<maven.compiler.target>1.8</maven.compiler.target>-->
-
 
         <ad-commons-version>1.0.1</ad-commons-version>
     </properties>
@@ -57,13 +58,34 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+            <scope>provided</scope>
+        </dependency>
 
 
         <dependency>
             <groupId>com.ximalaya.ad</groupId>
             <artifactId>ad-common-util</artifactId>
             <version>${ad-commons-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ximalaya.ad</groupId>
+            <artifactId>ad-common-model</artifactId>
+            <version>${ad-commons-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ximalaya.ad</groupId>
+            <artifactId>ad-web-api</artifactId>
+            <version>0.2.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

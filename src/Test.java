@@ -1,4 +1,9 @@
+import bean.JavaBean;
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+import com.ximalaya.ad.common.model.plan.MultiTimeRange;
+import com.ximalaya.ad.common.model.plan.TimeRange;
+import com.ximalaya.ad.common.util.CommonDateUtils;
 import com.ximalaya.ad.common.util.LogMessageBuilder;
 import funInterfaces.BufferedReaderProcessor;
 import interfaces.Test_IF;
@@ -13,9 +18,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.lang.System.out;
 
@@ -30,6 +37,14 @@ public class Test<T> {
     static String s = "123";
 
     public static void main(String args[]) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+
+
+        LocalDate now = LocalDate.now();
+        LocalDate secondYear = now.plusYears(1L);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        print(now.format(formatter));
+        print(secondYear.format(formatter));
 
 
     }
