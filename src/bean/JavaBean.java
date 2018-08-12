@@ -1,10 +1,17 @@
 package bean;
 
+import com.google.common.collect.Lists;
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * @author Hanzone
  * @date 2018年06月13日
  */
-public class JavaBean {
+@Data
+public class JavaBean implements Serializable {
 
     private int id;
 
@@ -12,37 +19,15 @@ public class JavaBean {
 
     private boolean isBig;
 
+    private List<String> strings = Lists.newArrayList();
+
     public JavaBean() {
     }
 
     public JavaBean(int id, String name) {
         this.id = id;
         this.name = name;
+        this.strings = Lists.newArrayList("1", "2");
     }
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
-    public boolean getIsBig() {
-        return isBig;
-    }
-
-    public void setIsBig(boolean isBig) {
-        this.isBig = isBig;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

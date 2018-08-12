@@ -11,11 +11,15 @@ public class Test_Impl implements Test_IF, Test_IF2 {
     private int i1;
 
     private Integer i2;
-    public Test_Impl(){
-    }
-    public Test_Impl(int i){
+
+    private Test_Impl(int i){
         this.i1 = i;
     }
+
+    public static Test_Impl create(int i) {
+        return new Test_Impl(i);
+    }
+
     @Override
     public void say() {
         Test_IF.super.say();

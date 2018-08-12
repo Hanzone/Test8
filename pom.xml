@@ -17,6 +17,7 @@
         <commons.io.version>2.5</commons.io.version>
         <slf4j.log4j12.version>1.7.7</slf4j.log4j12.version>
         <fastjson.version>1.2.6</fastjson.version>
+        <spring.beans.version>4.0.5.RELEASE</spring.beans.version>
 
         <!--<maven.compiler.source>1.8</maven.compiler.source>-->
         <!--<maven.compiler.target>1.8</maven.compiler.target>-->
@@ -56,6 +57,13 @@
             <version>${jedis.version}</version>
             <type>jar</type>
             <scope>compile</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.beans.version}</version>
         </dependency>
 
         <dependency>
