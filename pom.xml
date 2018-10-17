@@ -18,10 +18,12 @@
         <slf4j.log4j12.version>1.7.7</slf4j.log4j12.version>
         <fastjson.version>1.2.6</fastjson.version>
         <spring.beans.version>4.0.5.RELEASE</spring.beans.version>
+        <commons.codec.version>1.10</commons.codec.version>
 
         <!--<maven.compiler.source>1.8</maven.compiler.source>-->
         <!--<maven.compiler.target>1.8</maven.compiler.target>-->
 
+        <mainstay.version>3.0.10</mainstay.version>
         <ad-commons-version>1.0.1</ad-commons-version>
     </properties>
 
@@ -58,6 +60,11 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons.codec.version}</version>
+        </dependency>
 
 
         <dependency>
@@ -81,6 +88,11 @@
 
 
         <dependency>
+            <groupId>com.ximalaya.mainstay</groupId>
+            <artifactId>mainstay-all</artifactId>
+            <version>${mainstay.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.ximalaya.ad</groupId>
             <artifactId>ad-common-util</artifactId>
             <version>${ad-commons-version}</version>
@@ -93,7 +105,7 @@
         <dependency>
             <groupId>com.ximalaya.ad</groupId>
             <artifactId>ad-web-api</artifactId>
-            <version>0.2.1-SNAPSHOT</version>
+            <version>0.2.7-M3</version>
         </dependency>
     </dependencies>
 

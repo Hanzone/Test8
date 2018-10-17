@@ -14,4 +14,6 @@ public interface Test_IF {
     static void act () {
         System.out.println("do Test_IF");
     }
+
+    void papapa();
 }

@@ -6,7 +6,7 @@ import interfaces.Test_IF2;
 /**
  * Created by Haorenpu on 2018/4/13.
  */
-public class Test_Impl implements Test_IF, Test_IF2 {
+public abstract class Test_Impl implements Test_IF, Test_IF2 {
 
     private int i1;
 
@@ -16,14 +16,16 @@ public class Test_Impl implements Test_IF, Test_IF2 {
         this.i1 = i;
     }
 
-    public static Test_Impl create(int i) {
-        return new Test_Impl(i);
+    public Test_Impl create(int i) {
+        return this;
     }
 
     @Override
     public void say() {
         Test_IF.super.say();
     }
+
+    public abstract void papapa();
 
     public void laugh() {
         System.out.println("哈哈哈！！！");

@@ -1,35 +1,60 @@
 import bean.JavaBean;
 import bean.JavaBeanVo;
+import bean.Variable;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.*;
+import com.ximalaya.ad.common.model.material.ClickAction;
+import com.ximalaya.ad.common.model.plan.ChargeMethod;
 import com.ximalaya.ad.common.model.plan.MultiTimeRange;
+import com.ximalaya.ad.common.model.plan.Plan;
 import com.ximalaya.ad.common.model.plan.TimeRange;
+import com.ximalaya.ad.common.model.position.PositionType;
+import com.ximalaya.ad.common.model.unit.SoundPatchMode;
+import com.ximalaya.ad.common.model.zone.ZoneInfo;
 import com.ximalaya.ad.common.util.CommonDateUtils;
 import com.ximalaya.ad.common.util.CommonJsonUtils;
+import com.ximalaya.ad.common.util.HasId;
 import com.ximalaya.ad.common.util.LogMessageBuilder;
+import com.ximalaya.ad.web.api.schedule.ResourceOrderInfo;
+import com.ximalaya.mainstay.common.Option;
+import enums.Test_Enum;
 import funInterfaces.BufferedReaderProcessor;
 import interfaces.Test_IF;
 import interfaces.impl.Test_Impl;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.CompositeByteBuf;
+import io.netty.buffer.Unpooled;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.apache.commons.lang3.time.DateUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import util.DTOUtils;
 
 import java.io.*;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
+import static com.ximalaya.ad.common.util.CommonDateUtils.dayStartTime;
+import static com.ximalaya.ad.common.util.CommonDateUtils.parseDateTime;
 import static java.lang.System.out;
 
 /**
@@ -39,31 +64,64 @@ public class Test<T> {
 
     private static final Logger logger = LoggerFactory.getLogger(Test.class);
 
+    public static final ImmutableMap<Integer, String> SCHEDULE_SOUND_PATCH_STYLES =
+            ImmutableMap.<Integer, String>builder()
+                    .putAll(Arrays.stream(SoundPatchMode.values())
+                            .collect(Collectors.toMap(SoundPatchMode::getCode, SoundPatchMode::getDesc)))
+                    .build();
+
     int we = 122;
     static String s = "123";
 
     private static final long MILLS_SECOND_OF_DAY = 24 * 3600 * 1000L;
     private static final int SHARD_COUNT = 2;
+    public static final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_FORMAT = "yyyy-MM-dd";
 
+    private static final ExecutorService sendExecutor = Executors.newFixedThreadPool(50);
     public static void main(String args[]) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, IOException, ClassNotFoundException {
 
 
+        List<Variable> variables = Arrays.asList(
+                new Variable("#AA1#", "啊啊啊"),
+                new Variable("#AA#", "啊啊啊"),
+                new Variable("#AA#", "啊啊啊1"),
+                new Variable("#AA#", "啊啊啊1"),
+                new Variable("#BB#", "欢欢欢")
+        );
 
-        // [{"from":"2018-08-07 00:00:00","to":"2018-08-17 23:59:59"},{"from":"2018-08-20 00:00:00","to":"2018-08-30 23:59:59"}]
+        Map<String, List<Variable>> collect = variables.stream().collect(Collectors.groupingBy(Variable::getVariableCode, Collectors.mapping(Function.identity(), Collectors.toList())));
 
 
+        String ssss = variables.stream().findAny().map(Variable::getOpt).orElse("ssss");
 
-        List<String> map = new ArrayList<>();
 
-        String as = "^2[0-9]{3}Q[1-4]$";
+        List<Integer> PRODUCT_SALESMAN = ImmutableList.of(526);
 
-        Pattern pattern = Pattern.compile(as);
-        Matcher isNum = pattern.matcher("2018Q3d");
+        String jsonString = CommonJsonUtils.toJsonString(PRODUCT_SALESMAN);
+        print(jsonString);
 
-        print(isNum.matches());
+        String jsonString1 = CommonJsonUtils.toJsonString(Lists.newArrayList());
+        print(jsonString1);
+
+        String jsonString11 = CommonJsonUtils.toJsonString(Collections.EMPTY_LIST);
+        print(jsonString11);
+
 
     }
 
+
+
+    private static <T extends HasId<ID>, ID> List<T> getAllSafelyList(List<T> list1, List<T> list2) {
+        List<T> allLists = Lists.newArrayList();
+        if (list1 != null) {
+            allLists.addAll(list1);
+        }
+        if (list2 != null) {
+            allLists.addAll(list2);
+        }
+        return allLists;
+    }
 
     public static Object deepCopy(Serializable o) throws ClassNotFoundException, IOException {
 //		//先序列化，写入到流里

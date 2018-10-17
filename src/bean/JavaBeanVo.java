@@ -1,21 +1,22 @@
 package bean;
 
+import enums.Test_Enum;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class JavaBeanVo {
     private int id;
     private List<JavaBean> beans;
+    private List<Test_Enum> enums;
+    private Map<String, Object> ss;
 
-    public JavaBeanVo() {
+    private String sss;
+
+    public void setBhh(String bhh) {
+        this.sss = bhh;
     }
-
-    public JavaBeanVo(int id, List<JavaBean> beans) {
-        this.id = id;
-        this.beans = beans;
-    }
-
 
 }

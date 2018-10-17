@@ -1,9 +1,9 @@
 package bean;
 
-import com.google.common.collect.Lists;
+import enums.Test_Enum;
+import lombok.Builder;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,23 +11,12 @@ import java.util.List;
  * @date 2018年06月13日
  */
 @Data
-public class JavaBean implements Serializable {
+@Builder
+public class JavaBean {
 
     private int id;
-
     private String name;
-
     private boolean isBig;
-
-    private List<String> strings = Lists.newArrayList();
-
-    public JavaBean() {
-    }
-
-    public JavaBean(int id, String name) {
-        this.id = id;
-        this.name = name;
-        this.strings = Lists.newArrayList("1", "2");
-    }
+    private List<Test_Enum> enums;
 
 }
