@@ -1,8 +1,10 @@
 package bean;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode
 public class Variable {
     private String variableCode;
     private String variableName;

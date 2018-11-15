@@ -12,11 +12,7 @@ public class JavaBeanVo {
     private List<JavaBean> beans;
     private List<Test_Enum> enums;
     private Map<String, Object> ss;
-
     private String sss;
-
-    public void setBhh(String bhh) {
-        this.sss = bhh;
-    }
+    private Variable variable;
 
 }
