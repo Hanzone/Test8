@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.hanzone</groupId>
     <artifactId>test8</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <name>test8</name>
     <version>0.0.1</version>
 
@@ -24,7 +24,9 @@
         <!--<maven.compiler.target>1.8</maven.compiler.target>-->
 
         <mainstay.version>3.0.10</mainstay.version>
-        <ad-commons-version>1.0.1</ad-commons-version>
+        <ad-commons-version>1.0.30</ad-commons-version>
+        <scala.binary.version>2.11</scala.binary.version>
+        <xql-client.version>0.2.2</xql-client.version>
     </properties>
 
     <dependencies>
@@ -97,6 +99,12 @@
             <groupId>com.ximalaya.mainstay</groupId>
             <artifactId>mainstay-all</artifactId>
             <version>${mainstay.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>netty</artifactId>
+                    <groupId>io.netty</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.ximalaya.ad</groupId>
@@ -110,13 +118,36 @@
         </dependency>
         <dependency>
             <groupId>com.ximalaya.ad</groupId>
+            <artifactId>ad-common-bean</artifactId>
+            <version>${ad-commons-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ximalaya.ad</groupId>
             <artifactId>ad-web-api</artifactId>
             <version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ximalaya</groupId>
+            <artifactId>xql-csv-client_${scala.binary.version}</artifactId>
+            <version>${xql-client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ximalaya.ad</groupId>
+            <artifactId>ad-query-service</artifactId>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
 
 
     <build>
+        <finalName>test8</finalName>
+        <resources>
+            <resource>
+                <directory>src/resources</directory>
+            </resource>
+        </resources>
+        <outputDirectory>target/classes</outputDirectory>
+        <directory>target</directory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -129,6 +160,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <sourceDirectory>src</sourceDirectory>
 
     </build>
 </project>
