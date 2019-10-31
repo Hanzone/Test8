@@ -32,7 +32,7 @@ public class Son extends Father {
         this.name = name;
     }
 
-    public Son(int id, int age) {
+    public Son(int id, long age) {
         this.id = id;
         this.age = age;
     }

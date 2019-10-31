@@ -24,12 +24,18 @@
         <!--<maven.compiler.target>1.8</maven.compiler.target>-->
 
         <mainstay.version>3.0.10</mainstay.version>
-        <ad-commons-version>1.0.30</ad-commons-version>
+        <ad-commons-version>1.1.0-SNAPSHOT</ad-commons-version>
+        <ad.index.service.version>1.1.22-SNAPSHOT</ad.index.service.version>
         <scala.binary.version>2.11</scala.binary.version>
         <xql-client.version>0.2.2</xql-client.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.ximalaya.ad</groupId>
+            <artifactId>ad-stock-api</artifactId>
+            <version>1.0.3</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -94,6 +100,12 @@
             <version>1.8.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.ximalaya.mainstay</groupId>
@@ -125,6 +137,21 @@
             <groupId>com.ximalaya.ad</groupId>
             <artifactId>ad-web-api</artifactId>
             <version>0.3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ximalaya.ad</groupId>
+            <artifactId>ad-index-service</artifactId>
+            <version>${ad.index.service.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>${project.groupId}</groupId>
+                    <artifactId>ad-common-bean</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.ximalaya</groupId>

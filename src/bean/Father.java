@@ -1,5 +1,6 @@
 package bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -8,24 +9,22 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author hanzone.hao@ximalaya.com
  * @date 2019年04月16日
  */
-public class Father {
+@Data
+public class Father implements Comparable<Father> {
 
-    protected int id;
-    protected int age;
+    int id = 1;
+    long age = 2L;
+    double ss;
 
-    public int getId() {
-        return id;
+    public Father() {
     }
 
-    public void setId(int id) {
+    public Father(int id) {
         this.id = id;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
+    public Father(int id, long age) {
+        this.id = id;
         this.age = age;
     }
 
@@ -34,4 +33,8 @@ public class Father {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
+    @Override
+    public int compareTo(Father other) {
+        return Integer.compare(this.id, other.id);
+    }
 }
