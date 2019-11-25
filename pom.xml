@@ -19,6 +19,8 @@
         <fastjson.version>1.2.6</fastjson.version>
         <spring.beans.version>4.0.5.RELEASE</spring.beans.version>
         <commons.codec.version>1.10</commons.codec.version>
+        <httpclient.version>4.4.1</httpclient.version>
+        <commons.httpclient.version>3.1</commons.httpclient.version>
 
         <!--<maven.compiler.source>1.8</maven.compiler.source>-->
         <!--<maven.compiler.target>1.8</maven.compiler.target>-->
@@ -162,6 +164,16 @@
             <groupId>com.ximalaya.ad</groupId>
             <artifactId>ad-query-service</artifactId>
             <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${commons.httpclient.version}</version>
         </dependency>
     </dependencies>
 
