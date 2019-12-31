@@ -16,7 +16,7 @@
         <guava.version>18.0</guava.version>
         <commons.io.version>2.5</commons.io.version>
         <slf4j.log4j12.version>1.7.7</slf4j.log4j12.version>
-        <fastjson.version>1.2.6</fastjson.version>
+        <fastjson.version>1.2.25</fastjson.version>
         <spring.beans.version>4.0.5.RELEASE</spring.beans.version>
         <commons.codec.version>1.10</commons.codec.version>
         <httpclient.version>4.4.1</httpclient.version>
