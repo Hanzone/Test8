@@ -179,7 +179,7 @@
 
 
     <build>
-        <finalName>test8</finalName>
+        <finalName>Test8</finalName>
         <resources>
             <resource>
                 <directory>src/resources</directory>

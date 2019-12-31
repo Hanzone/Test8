@@ -1,5 +1,3 @@
-
-import org.apache.commons.lang3.RandomUtils;
 import org.eclipse.collections.impl.factory.Sets;
 
 import java.util.BitSet;
@@ -9,6 +7,8 @@ import java.util.Set;
 public class BitMapTest {
     public static void main(String[] args){
         testBitSetcalculate2();
+        testBitSetcalculate();
+        testBitSetMemory();
     }
 
     private static void testBitSetcalculate2(){
@@ -63,7 +63,7 @@ public class BitMapTest {
     }
 
 
-    private static void testBitSetMemory(){
+    private static void testBitSetMemory() {
         /*运行前内存*/
         long beforeMemory = Runtime.getRuntime().totalMemory();
         long start1=System.currentTimeMillis();

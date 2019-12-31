@@ -2,8 +2,6 @@ package bean;
 
 import lombok.Data;
 import lombok.ToString;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * @author hanzone.hao@ximalaya.com

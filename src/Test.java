@@ -16,14 +16,15 @@ public class Test<T> {
     }
 
     public static void main(String args[]) throws Exception {
-
-
+        print("哈哈哈");
+        getByteFile();
+        getStrFile();
     }
 
-    private static void getBaseStr() {
+    private static void getByteFile() {
 
         try {
-            File file = new File("/Users/Hanzone/DeskTop/TrustPay.cer");
+            File file = new File("/Users/Ted/sss.sql");
             FileInputStream fis = new FileInputStream(file);
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -43,7 +44,29 @@ public class Test<T> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    private static void getStrFile() {
+
+        try {
+
+            FileReader fr = new FileReader("/Users/Ted/sss.sql");
+            BufferedReader bf = new BufferedReader(fr);
+
+            String str;
+            StringBuilder sb = new StringBuilder();
+            Base64.Decoder decoder = Base64.getDecoder();
+            while ((str = bf.readLine()) != null) {
+                sb.append(new String(decoder.decode(str)));
+                sb.append('\n');
+            }
+
+            print(sb.toString());
+            fr.close();
+            bf.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FunctionalInterface
