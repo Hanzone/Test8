@@ -1,4 +1,3 @@
-
 package util;
 
 import com.ximalaya.ad.common.util.LogMessageBuilder;
@@ -6,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,5 +48,26 @@ public class DTOUtils {
             }
         }
         return list;
+    }
+
+    public static Object deepCopy(Serializable o) {
+        try {
+            //先序列化，写入到流里
+            ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            ObjectOutputStream oo = new ObjectOutputStream(bo);
+            oo.writeObject(o);
+            //然后反序列化，从流里读取出来，即完成复制
+            ByteArrayInputStream bi = new ByteArrayInputStream(bo.toByteArray());
+            ObjectInputStream oi = new ObjectInputStream(bi);
+            try {
+                return oi.readObject();
+            } catch (ClassNotFoundException e) {
+                log.error("deepCopy failed!", e);
+                return null;
+            }
+        } catch (IOException e) {
+            log.error("deepCopy failed!", e);
+            return null;
+        }
     }
 }

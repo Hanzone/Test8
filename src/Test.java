@@ -15,10 +15,10 @@ public class Test<T> {
         print(Test.class.getClassLoader());
     }
 
-    public static void main(String args[]) throws Exception {
-        print("哈哈哈");
-        getByteFile();
-        getStrFile();
+
+
+    public static void main(String[] args) throws Exception {
+
     }
 
     private static void getByteFile() {
