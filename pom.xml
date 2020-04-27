@@ -25,19 +25,10 @@
         <!--<maven.compiler.source>1.8</maven.compiler.source>-->
         <!--<maven.compiler.target>1.8</maven.compiler.target>-->
 
-        <mainstay.version>3.0.10</mainstay.version>
-        <ad-commons-version>1.1.0-SNAPSHOT</ad-commons-version>
-        <ad.index.service.version>1.1.22-SNAPSHOT</ad.index.service.version>
-        <scala.binary.version>2.11</scala.binary.version>
-        <xql-client.version>0.2.2</xql-client.version>
+        <ad-commons-version>1.1.17</ad-commons-version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.ximalaya.ad</groupId>
-            <artifactId>ad-stock-api</artifactId>
-            <version>1.0.3</version>
-        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -110,17 +101,6 @@
 
 
         <dependency>
-            <groupId>com.ximalaya.mainstay</groupId>
-            <artifactId>mainstay-all</artifactId>
-            <version>${mainstay.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>netty</artifactId>
-                    <groupId>io.netty</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
             <groupId>com.ximalaya.ad</groupId>
             <artifactId>ad-common-util</artifactId>
             <version>${ad-commons-version}</version>
@@ -135,36 +115,7 @@
             <artifactId>ad-common-bean</artifactId>
             <version>${ad-commons-version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.ximalaya.ad</groupId>
-            <artifactId>ad-web-api</artifactId>
-            <version>0.3.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ximalaya.ad</groupId>
-            <artifactId>ad-index-service</artifactId>
-            <version>${ad.index.service.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>${project.groupId}</groupId>
-                    <artifactId>ad-common-bean</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.ximalaya</groupId>
-            <artifactId>xql-csv-client_${scala.binary.version}</artifactId>
-            <version>${xql-client.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ximalaya.ad</groupId>
-            <artifactId>ad-query-service</artifactId>
-            <version>1.0.1</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -175,11 +126,24 @@
             <artifactId>commons-httpclient</artifactId>
             <version>${commons.httpclient.version}</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 
     <build>
         <finalName>Test8</finalName>
+        <sourceDirectory>src</sourceDirectory>
         <resources>
             <resource>
                 <directory>src/resources</directory>
@@ -199,7 +163,15 @@
                 </configuration>
             </plugin>
         </plugins>
-        <sourceDirectory>src</sourceDirectory>
+
+
+        <testSourceDirectory>test</testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>test/resources</directory>
+            </testResource>
+        </testResources>
+        <testOutputDirectory>target/test-classes</testOutputDirectory>
 
     </build>
 </project>

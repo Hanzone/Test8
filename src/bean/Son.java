@@ -2,13 +2,15 @@ package bean;
 
 import lombok.Data;
 import lombok.ToString;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * @author hanzone.hao@ximalaya.com
  * @date 2019年04月16日
  */
 @Data
-@ToString(callSuper=true)
+//@ToString(callSuper=true)
 public class Son extends Father {
 
     Son() {
@@ -35,9 +37,9 @@ public class Son extends Father {
         this.age = age;
     }
 
-//    @Override
-//    public String toString() {
-//        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-//    }
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 
 }
