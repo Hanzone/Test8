@@ -1,6 +1,7 @@
 package concurrent;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -13,8 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class ThreadPoolFactory {
 
-    public static ThreadPoolExecutor creatExecutor(String poolName) {
-        return new ThreadPoolExecutor(4,
+    public static Pair<ThreadPoolExecutor, Runnable> creatExecutorWithStopper(String poolName) {
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(4,
                 20,
                 1, TimeUnit.MINUTES,
                 new ArrayBlockingQueue<>(1000),
@@ -22,6 +23,8 @@ public class ThreadPoolFactory {
                 (runnable, executor) -> {
                     throw new RejectedExecutionException("Task rejected from " + executor.toString());
                 });
+        Runnable stopper = () -> ThreadPoolFactory.shutdownAndWait(threadPoolExecutor);
+        return Pair.of(threadPoolExecutor, stopper);
     }
 
     public static void shutdownAndWait(ExecutorService executorService) {
