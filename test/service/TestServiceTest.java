@@ -1,14 +1,14 @@
 package service;
 
-import org.junit.After;
-import org.junit.Before;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class TestServiceTest {
+@Slf4j
+public class TestServiceTest extends BaseTest {
 
-    private TestService testService;
+    private TestService testService = new TestService();
 
     @Test
     public void getHello() {
@@ -20,16 +20,6 @@ public class TestServiceTest {
     public void satHi() {
         String hi = testService.satHi();
         assertEquals("Hi", hi);
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        testService = new TestService();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        testService = null;
     }
 
 }

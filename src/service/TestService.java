@@ -10,4 +10,12 @@ public class TestService {
         return "Hi";
     }
 
+    public String sayHello() {
+        return "Hello";
+    }
+
+    public String meAndYou(String me) {
+        return me + "you";
+    }
+
 }

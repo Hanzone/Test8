@@ -1,9 +1,8 @@
 package util;
 
-import com.ximalaya.ad.common.util.LogMessageBuilder;
+import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -18,11 +17,7 @@ public class DTOUtils {
             BeanUtils.copyProperties(source, t);
             return t;
         } catch (Exception e) {
-            log.error(
-                    new LogMessageBuilder("copy bean properties failed")
-                            .addParameter("source", source)
-                            .addParameter("targetClass", targetClass.getName())
-                            .toString(), e);
+            log.error("copy bean properties failed, source={}, targetClass={}", source, targetClass.getName(), e);
         }
         return null;
     }
@@ -31,11 +26,7 @@ public class DTOUtils {
         try {
             BeanUtils.copyProperties(source, dist);
         } catch (Exception e) {
-            log.error(
-                    new LogMessageBuilder("copy bean properties failed")
-                            .addParameter("source", source)
-                            .addParameter("target", dist)
-                            .toString(), e);
+            log.error("copy bean properties failed, source={}, target={}", source, dist, e);
         }
     }
 

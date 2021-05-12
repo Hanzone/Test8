@@ -1,0 +1,13 @@
+2020年 7月29日 星期三 14时15分46秒 CST
+/usr/local/Cellar/coreutils/8.32/libexec/gnubin
+/usr/local/bin
+/Users/Ted/MyApps/apache-tomcat-8.5.29/bin
+/Users/Ted/MyApps/apache-maven-3.5.0/bin
+/Users/Ted/MyApps/gradle-6.3/bin
+/usr/local/bin
+/usr/bin
+/bin
+/usr/sbin
+/sbin
+/usr/local/mysql/bin
+/usr/local/mysql/support-files

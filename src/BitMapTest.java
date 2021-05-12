@@ -1,6 +1,5 @@
-import org.eclipse.collections.impl.factory.Sets;
-
 import java.util.BitSet;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -33,7 +32,7 @@ public class BitMapTest {
         /*运行前内存*/
         long beforeMemory = Runtime.getRuntime().totalMemory();
         long start1=System.currentTimeMillis();
-        Set<BitSet> sets = Sets.mutable.empty();
+        Set<BitSet> sets = new HashSet<>();
         int size = 100000000;
         for(int i = 0; i< 10 ;i++){
             BitSet set = new BitSet(size);

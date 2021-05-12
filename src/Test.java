@@ -1,94 +1,85 @@
-import bean.Father;
-import bean.Son;
-import bean.TransDTO1;
-import com.google.common.collect.Lists;
-import concurrent.MyLock;
-import concurrent.MyThread;
-import concurrent.ThreadContext;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
-import static java.lang.System.out;
-
-/**
- * Created by Hanzone on 2018/4/12.
- */
 @Slf4j
 public class Test<T> {
 
-    static {
-        print(Test.class.getClassLoader());
-    }
+    private static final ThreadPoolExecutor executor = new ThreadPoolExecutor(
+            2,
+            3,
+            1,
+            TimeUnit.MINUTES,
+            new ArrayBlockingQueue<>(1),
+            new ThreadFactoryBuilder().setDaemon(false).setPriority(Thread.NORM_PRIORITY).setNameFormat("sim-mobile-import-%d").build());
 
-
+    public static Cache<Integer, Integer> CACHE = CacheBuilder.newBuilder()
+            .maximumSize(10)
+            .expireAfterWrite(60, TimeUnit.SECONDS)
+            .recordStats()
+            .build();
 
     public static void main(String[] args) throws Exception {
 
-//        FileOutputStream fos = new FileOutputStream("/Users/Ted/s.txt");
-//        ObjectOutputStream oos = new ObjectOutputStream(fos);
-//        TransDTO1 transDTO1 = new TransDTO1(1, "ted");
-//        oos.writeObject(transDTO1);
-//        oos.flush();
-//        oos.close();
 
-//        FileInputStream fis = new FileInputStream("/Users/Ted/s.txt");
-//
-//        ObjectInputStream ois = new ObjectInputStream(fis);
-//        TransDTO1 transDTO1 = (TransDTO1) ois.readObject();
-//        print(transDTO1);
+    }
 
-
-//        ThreadContext.set("123");
-//        ThreadContext.setSss("sss123");
-//
-//        MyThread myThread = new MyThread(new MyLock());
-//        myThread.start();
-//
-//        Thread.sleep(1000);
-//        System.out.print(ThreadContext.get());
-//        System.out.print(ThreadContext.getSss());
-
-
-        String param = null;
-
-        switch (param) {
-// 肯定不是进入这里
-            case "sth": System.out.println("it's sth"); break;
-// 也不是进入这里
-            case "null": System.out.println("it's null"); break;
-// 也不是进入这里
-            default: System.out.println("default");
+    private static Integer sss(int i) {
+        try {
+            return CACHE.get(i, () -> {
+                if (i == 1) {
+                    throw new RuntimeException("RPC EEEEEEEEEEEEEEE");
+                }
+                return i * 2;
+            });
+        } catch (ExecutionException e) {
+            log.error("ssss", e);
+            return 1000;
         }
-
-
-
     }
 
-
-    private static void dbTable() {
-        long uid = 9949230521447L;
-
-        String db = db(uid);
-        String table = table(uid);
-
-        print("db: " + db + " table: " + table);
+    private static StringBuilder appendValue(StringBuilder sb, Object value) {
+        if (value instanceof String) {
+            return sb.append(", ").append("'").append(value).append("'");
+        } else {
+            return sb.append(", ").append(value);
+        }
     }
 
-    private static String db(long uid) {
-        long l = ((uid % 4096) & 63) >> 4;
-        return "" + l;
-    }
+    public static void writefile(List<String> lines) {
+        String fileName="/Users/Ted/sssss.sql";
+        try {
+            BufferedWriter out=new BufferedWriter(new FileWriter(fileName));
 
-    private static String table(long uid) {
-
-        long l = ((uid % 4096) & 63) % 16;
-
-        return "" + l;
+            lines.forEach(line -> {
+                try {
+                    out.write(line);
+                    out.newLine();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void getByteFile() {
@@ -116,27 +107,24 @@ public class Test<T> {
         }
     }
 
-    private static void getStrFile() {
+    private static List<String> getStrFile() {
 
+        List<String> strs = new ArrayList<>();
         try {
-
-            FileReader fr = new FileReader("/Users/Ted/sss.sql");
+            FileReader fr = new FileReader("/Users/Ted/old.sql");
             BufferedReader bf = new BufferedReader(fr);
 
             String str;
-            StringBuilder sb = new StringBuilder();
-            Base64.Decoder decoder = Base64.getDecoder();
             while ((str = bf.readLine()) != null) {
-                sb.append(new String(decoder.decode(str)));
-                sb.append('\n');
+                strs.add(str);
             }
-
-            print(sb.toString());
             fr.close();
             bf.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return strs;
     }
 
     @FunctionalInterface
@@ -145,7 +133,7 @@ public class Test<T> {
     }
 
     static void print(Object o) {
-        out.println(o);
+        System.out.println(o);
     }
 
 }
