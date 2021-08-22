@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,6 +18,8 @@ public class TransDTO1 implements Serializable {
 
     private int id;
     private String name;
+    private JavaBeanVo javaBeanVo;
+    private List<JavaBeanVo> javaBeanVoList;
 
     @Override
     public String toString() {

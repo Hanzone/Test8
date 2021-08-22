@@ -5,15 +5,19 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class IOUtils {
 
-    public static void writefile(List<String> lines) {
-        String fileName="/Users/Ted/sssss.sql";
+    public static void  writefile(List<String> lines) {
+        String fileName="/Users/Ted/ss.sql";
         try {
-            BufferedWriter out=new BufferedWriter(new FileWriter(fileName));
+            BufferedWriter out=new BufferedWriter(new FileWriter(fileName, true));
 
             lines.forEach(line -> {
                 try {
@@ -29,7 +33,7 @@ public class IOUtils {
         }
     }
 
-    private static List<String> getStrFile() {
+    public static List<String> getStrFile() {
 
         List<String> strs = new ArrayList<>();
         try {
@@ -47,6 +51,15 @@ public class IOUtils {
         }
 
         return strs;
+    }
+
+    public static List<String> getStrFile2() {
+        try {
+            return Files.readAllLines(Paths.get("/Users/Ted/old.sql"), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
     }
 
 }

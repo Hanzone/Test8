@@ -18,12 +18,9 @@ import java.util.Date;
 public class Father implements Comparable<Father> {
 
     int id = 1;
-    int idHave = 1;
     long age = 2L;
-    double ss;
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     Date birthday;
-    String as_aqq;
 
     public Father() {
     }
@@ -35,6 +32,10 @@ public class Father implements Comparable<Father> {
     public Father(int id, long age) {
         this.id = id;
         this.age = age;
+    }
+
+    public Object get() {
+        return 123;
     }
 
     @Override

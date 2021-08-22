@@ -23,8 +23,7 @@ public class ThreadPoolFactory {
                 (runnable, executor) -> {
                     throw new RejectedExecutionException("Task rejected from " + executor.toString());
                 });
-        Runnable stopper = () -> ThreadPoolFactory.shutdownAndWait(threadPoolExecutor);
-        return Pair.of(threadPoolExecutor, stopper);
+        return Pair.of(threadPoolExecutor, () -> ThreadPoolFactory.shutdownAndWait(threadPoolExecutor));
     }
 
     public static void shutdownAndWait(ExecutorService executorService) {

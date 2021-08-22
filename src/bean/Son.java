@@ -1,6 +1,7 @@
 package bean;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -11,6 +12,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 @Data
 //@ToString(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 public class Son extends Father {
 
     Son() {
@@ -36,6 +38,11 @@ public class Son extends Father {
         this.id = id;
         this.age = age;
     }
+
+//    @Override
+//    public String get() {
+//        return "sss";
+//    }
 
     @Override
     public String toString() {

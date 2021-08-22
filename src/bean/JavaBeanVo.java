@@ -1,10 +1,6 @@
 package bean;
 
-import enums.Test_Enum;
 import lombok.Data;
-
-import java.util.List;
-import java.util.Map;
 
 @Data
 public class JavaBeanVo {
@@ -12,7 +8,7 @@ public class JavaBeanVo {
 //    private List<JavaBean> beans;
 //    private List<Test_Enum> enums;
 //    private Map<String, Object> ss;
-    private String sss;
+    private String name;
 //    private Variable variable;
 
 }
